@@ -1,4 +1,4 @@
-# Infra API
+# VPC API
 
 Serverless Python REST API on AWS for VPC and network management, deployed with Terraform modules.
 

@@ -162,35 +162,6 @@ terraform plan
 terraform apply
 ```
 
-## Useful Terraform Commands
-
-Format all Terraform files recursively from a root folder:
-
-```bash
-terraform fmt -recursive
-```
-
-Destroy all resources:
-
-```bash
-terraform destroy
-```
-
-## Outputs
-
-After `terraform apply`, capture important outputs:
-
-```bash
-terraform output
-```
-
-Commonly used outputs:
-- API default URL
-- Custom domain URL
-- Cognito User Pool ID
-- Cognito App Client ID
-- DynamoDB table names
-
 ## Authentication and Token Usage
 
 After deployment:
@@ -221,46 +192,3 @@ curl -X POST "https://api.example.com/vpc" \
     }
   }'
 ```
-
-## Local Development Notes
-
-- Lambda code lives in `api/`
-- Dependency pinning is in `api/requirements.txt`
-- Terraform Lambda module packages code from `../../api`
-
-## Operational Notes
-
-- DynamoDB scans in listing operations include pagination handling.
-- CORS is enabled in API Gateway with `Authorization` and `Content-Type` headers.
-- CloudWatch log retention is configurable (`log_retention_days`).
-
-## Troubleshooting
-
-### `terraform validate` fails
-- Run `terraform fmt -recursive`
-- Run `terraform init -upgrade`
-- Re-run `terraform validate`
-
-### 401 Unauthorized
-- Ensure the token is not expired
-- Ensure token audience matches Cognito app client ID
-- Ensure issuer matches deployed user pool
-- Ensure `Authorization` header is `Bearer <token>`
-
-### Route53 or certificate issues
-- Confirm hosted zone exists and is public
-- Confirm `domain_name` is inside `hosted_zone_name`
-- Wait for ACM DNS validation to complete
-
-## Security Notes
-
-- Do not commit secrets or private credentials.
-- Keep token validity aligned with your security requirements.
-- Use least-privilege IAM policies for production.
-
-## Future Improvements
-
-- Add CI/CD pipeline for Terraform + Lambda deploys
-- Add `/health` endpoint (optionally public)
-- Add structured request/response schema validation
-- Add observability (dashboards, alarms, tracing)

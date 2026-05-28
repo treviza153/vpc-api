@@ -1,0 +1,3 @@
+# boto3 is pre-installed in the AWS Lambda Python runtime.
+# Pin it here to ensure version consistency between local dev and Lambda.
+boto3>=1.34.0

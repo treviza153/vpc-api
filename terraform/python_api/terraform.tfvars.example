@@ -1,0 +1,18 @@
+aws_region       = "us-east-1"
+project_name     = "infra-api"
+environment      = "dev"
+domain_name      = "api.example.com"
+hosted_zone_name = "example.com"
+
+lambda_handler      = "lambda_handler.lambda_handler"
+lambda_runtime      = "python3.12"
+lambda_memory_size  = 256
+lambda_timeout      = 30
+log_retention_days  = 14
+
+dynamodb_deletion_protection_enabled = false
+
+# Cognito token validity
+cognito_access_token_validity_hours  = 1
+cognito_id_token_validity_hours      = 1
+cognito_refresh_token_validity_days  = 30
